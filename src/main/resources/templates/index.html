@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<!-- START head -->
+<head th:replace="~{fragments/head :: head}"><title>Metro Exodus</title></head>
+<!-- END head -->
+
+<body>
+    <!-- START header -->
+    <header th:replace="~{fragments/header :: header}"></header>
+    <!-- END header -->
+
+	<!-- START Slogan -->
+	<div class="hero-wrap" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+      	<div class="overlay"></div>
+      	<div class="overlay-2"></div>
+      	<div class="container">
+        	<div class="row no-gutters slider-text justify-content-center align-items-center">
+          		<div class="col-lg-8 col-md-6 ftco-animate d-flex align-items-end">
+          			<div class="text text-center w-100">
+	            		<h1 class="mb-4">Chọn nhà<br>Xây dựng tương lai.</h1>
+	            		<p><a th:href="@{/Metro/bat-dong-san}" class="btn btn-primary py-3 px-4">Bắt đầu tìm kiếm</a></p>
+            		</div>
+          		</div>
+        	</div>
+      	</div>
+	</div>
+    <div class="mouse">
+		<a href="#" class="mouse-icon">
+			<div class="mouse-wheel"><span class="ion-ios-arrow-round-down"></span></div>
+		</a>
+	</div>
+	<!-- END Slogan -->
+
+	<!-- START Search -->
+    <section class="ftco-section ftco-no-pb">
+    	<div class="container">
+	    	<div class="row">
+				<div class="col-md-12">
+					<div class="search-wrap-1 ftco-animate">
+						<form class="search-property-1">
+							<div class="row">
+								<!-- Location -->
+		        				<div class="col-lg align-items-end">
+		        					<div class="form-group">
+		        						<label for="home_address">Địa điểm</label>
+		          						<div class="form-field">
+											<div class="select-wrap">
+												<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+												<select class="form-control" id="home_address" name="home_location">
+													<option value="">Tất cả</option>
+													<option value="Thử Đức">Thủ Đức</option>
+													<option value="Quận 1">Quận 1</option>
+													<option value="Quận 2">Quận 2</option>
+													<option value="Quận 3">Quận 3</option>
+													<option value="Quận 4">Quận 4</option>
+													<option value="Quận 5">Quận 5</option>
+													<option value="Quận 6">Quận 6</option>
+													<option value="Quận 7">Quận 7</option>
+													<option value="Quận 8">Quận 8</option>
+													<option value="Quận 9">Quận 9</option>
+													<option value="Quận 10">Quận 10</option>
+													<option value="Quận 11">Quận 11</option>
+													<option value="Quận 12">Quận 12</option>
+													<option value="Bình Tân">Bình Tân</option>
+													<option value="Bình Thạnh">Bình Thạnh</option>
+													<option value="Gò Vấp">Gò Vấp</option>
+													<option value="Phú Nhuận">Phú Nhuận</option>
+													<option value="Tân Bình">Tân Bình</option>
+													<option value="Tân Phú">Tân Phú</option>
+													<option value="Bình Chánh">Bình Chánh</option>
+													<option value="Cần Giờ">Cần Giờ</option>
+													<option value="Củ Chi">Củ Chi</option>
+													<option value="Hóc Môn">Hóc Môn</option>
+													<option value="Nhà Bè">Nhà Bè</option>
+												</select>
+											</div>
+				              			</div>
+			              			</div>
+		        				</div>
+								<!-- Type -->
+		        				<div class="col-lg align-items-end">
+		        					<div class="form-group">
+		        						<label for="home_type">Loại nhà đất</label>
+		        						<div class="form-field">
+		          							<div class="select-wrap">
+												<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+												<select class="form-control" id="home_type" name="home_type">
+													<option value="">Tất cả</option>
+													<option value="Đất">Đất</option>
+													<option value="Văn phòng">Văn phòng</option>
+													<option value="Chung cư">Chung cư</option>
+													<option value="Nhà trọ">Nhà trọ</option>
+													<option value="Nhà riêng">Nhà riêng</option>
+													<option value="Biệt thự, khu nghỉ dưỡng">Biệt thự, khu nghỉ dưỡng</option>
+													<option value="Kho hàng, nhà xưởng">Kho hàng, nhà xưởng</option>
+												</select>
+		                    				</div>
+				              			</div>
+			              			</div>
+		        				</div>
+								<!-- Property -->
+		        				<div class="col-lg align-items-end">
+		        					<div class="form-group">
+		        						<label for="home_property">Mua / Thuê</label>
+		        						<div class="form-field">
+		          							<div class="select-wrap">
+								  				<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+												<select class="form-control" id="home_property" name="home_property">
+													<option value="">Tất cả</option>
+													<option value="Thuê">Cho thuê</option>
+													<option value="Bán">Bán</option>
+												</select>
+											</div>
+								  		</div>
+							  		</div>
+								</div>
+								<!-- Price -->
+								<div class="col-lg align-items-end">
+									<div class="form-group">
+										<label for="home_price">Giới hạn giá</label>
+										<div class="form-field">
+											<div class="select-wrap">
+								  				<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+												<select class="form-control" id="home_price" name="home_price">
+													<option value="">Tất cả</option>
+													<option value="0_2">Dưới 2 triệu</option>
+													<option value="2_5">2-5 triệu</option>
+													<option value="5_8">5-8 triệu</option>
+													<option value="8_10">8-10 triệu</option>
+													<option value="10_20">10-20 triệu</option>
+													<option value="20_50">20-50 triệu</option>
+													<option value="50_100">50-100 triệu</option>
+													<option value="100_200">100-200 triệu</option>
+													<option value="200_500">200-500 triệu</option>
+													<option value="500_1000">0.5-1 tỷ</option>
+													<option value="1000_2000">1-2 tỷ</option>
+													<option value="2000_5000">2-5 tỷ</option>
+													<option value="5000_10000">5-10 tỷ</option>
+													<option value="10000_-10">Trên 10 tỷ</option>
+												</select>
+											</div>
+				              			</div>
+			              			</div>
+		        				</div>
+		        			</div>
+		        		</form>
+		        	</div>
+				</div>
+	    	</div>
+	    </div>
+    </section>
+	<!-- END Search -->
+
+	<!-- START List -->
+    <section class="ftco-section goto-here">
+    	<div class="container">
+    		<div class="row justify-content-center">
+          		<div class="col-md-12 heading-section text-center ftco-animate mb-5">
+          			<span class="subheading">Danh sách bất động sản.</span>
+            		<h2 class="mb-2">Danh sách bất động sản hiện có.</h2>
+          		</div>
+        	</div>
+			<div class="row" id="propertyContainer">
+				<div th:replace="~{fragments/propertyList :: propertyList}"></div>
+			</div>
+    	</div>
+    </section>
+	<!-- END List -->
+
+	<!-- START About -->
+    <section class="ftco-section ftco-fullwidth">
+    	<div class="overlay"></div>
+    	<div class="container">
+    		<div class="row justify-content-center">
+          		<div class="col-md-12 heading-section text-center ftco-animate mb-5">
+          			<span class="subheading">Dịch vụ</span>
+            		<h2 class="mb-2">Tại sao lại lựa chọn chúng tôi.</h2>
+          		</div>
+        	</div>
+    	</div>
+    	<div class="container-fluid px-0">
+    		<div class="row d-md-flex text-wrapper align-items-stretch">
+				<div class="one-half mb-md-0 mb-4 img d-flex align-self-stretch" style="background-image: url('/images/about.jpg');"></div>
+				<div class="one-half half-text d-flex justify-content-end align-items-center">
+					<div class="text-inner pl-md-5">
+						<div class="row d-flex">
+
+				  			<div class="col-md-12 d-flex align-self-stretch ftco-animate">
+								<div class="media block-6 services-wrap d-flex">
+									<div class="icon d-flex justify-content-center align-items-center"><span class="flaticon-piggy-bank"></span></div>
+					  				<div class="media-body pl-4">
+										<h3>Không cần đặt cọc</h3>
+										<p>Bạn không cần đặt cọc khi mua/thuê nhà đất. Bạn chỉ phải trả phí khi đã lập hợp đồng.</p>
+					  				</div>
+								</div>
+				  			</div>
+				  			<div class="col-md-12 d-flex align-self-stretch ftco-animate">
+								<div class="media block-6 services-wrap d-flex">
+									<div class="icon d-flex justify-content-center align-items-center"><span class="flaticon-wallet"></span></div>
+					  				<div class="media-body pl-4">
+										<h3>Ưu đãi tiền mặt</h3>
+										<p>Nếu bạn sử dụng tiền mặt, bạn sẽ nhận được một số ưu đãi so với việc thanh toán thẻ.</p>
+					  				</div>
+								</div>
+				  			</div>
+							<div class="col-md-12 d-flex align-self-stretch ftco-animate">
+								<div class="media block-6 services-wrap d-flex">
+									<div class="icon d-flex justify-content-center align-items-center"><span class="flaticon-file"></span></div>
+									<div class="media-body pl-4">
+										<h3>Chuyên gia hỗ trợ.</h3>
+										<p>Chúng tôi có các chuyên gia chuyên về tài chính và bất động sản hỗ trợ bạn bất cứ khi nào bạn cần.</p>
+									</div>
+								</div>
+				  			</div>
+							<div class="col-md-12 d-flex align-self-stretch ftco-animate">
+								<div class="media block-6 services-wrap d-flex">
+									<div class="icon d-flex justify-content-center align-items-center"><span class="flaticon-locked"></span></div>
+					  				<div class="media-body pl-4">
+										<h3>Thông tin rõ ràng</h3>
+										<p>Mọi thông tin về chi phí và bất động sản luôn rõ ràng và minh bạch. Không có chi phí ẩn.</p>
+					  				</div>
+								</div>
+				  			</div>
+
+						</div>
+            		</div>
+				</div>
+    		</div>
+    	</div>
+    </section>
+	<!-- END About -->
+
+	<!-- START Parameter -->
+	<section class="ftco-counter ftco-section img" id="section-counter">
+    	<div class="container">
+    		<div class="row">
+
+          		<div class="col-md-4 col-lg-4 justify-content-center counter-wrap ftco-animate">
+            		<div class="block-18">
+              			<div class="text text-border d-flex align-items-center">
+							<strong class="number" data-number="0">0</strong>
+                			<span>Tổng số<br>bất động sản hiện có.</span>
+              			</div>
+            		</div>
+          		</div>
+				<div class="col-md-4 col-lg-4 justify-content-center counter-wrap ftco-animate">
+					<div class="block-18">
+						<div class="text text-border d-flex align-items-center">
+							<strong class="number" data-number="0">0</strong>
+							<span>Tổng số<br>Tài khoản người dùng.</span>
+						</div>
+					</div>
+				</div>
+			  	<div class="col-md-4 col-lg-4 justify-content-center counter-wrap ftco-animate">
+					<div class="block-18">
+				  		<div class="text text-border d-flex align-items-center">
+							<strong class="number" data-number="0">0</strong>
+							<span>Tổng số<br>giao dịch được thực hiện.</span>
+				  		</div>
+					</div>
+			  	</div>
+
+        	</div>
+    	</div>
+    </section>
+	<!-- END Parameter -->
+
+	<!-- START Agent -->
+	<section class="ftco-section ftco-agent">
+
+    	<div class="container">
+			<div class="row justify-content-center pb-5">
+          		<div class="col-md-12 heading-section text-center ftco-animate">
+          			<span class="subheading">Môi giới</span>
+            		<h2 class="mb-4">Chuyên gia môi giới của chúng tôi.</h2>
+          		</div>
+        	</div>
+
+        	<div class="row" th:each="agent:${agents}">
+        		<div class="col-md-3 ftco-animate">
+        			<div class="agent">
+    					<div class="img"><img th:src="${agent.base64Avatar}" class="img-fluid" alt="agent" src=""></div>
+	    				<div class="desc">
+	    					<h3><a href="#" th:text="${agent.name}"></a></h3>
+							<p class="h-info">
+								<span class="ion-ios-filing icon"></span>
+								<span class="details" th:text="${agent.propertiesCount + ' Properties'}"></span>
+							</p>
+	    				</div>
+    				</div>
+        		</div>
+        	</div>
+
+    	</div>
+    </section>
+
+	<!-- START footer -->
+	<footer th:replace="~{fragments/footer :: footer}"></footer>
+	<!-- END footer -->
+
+	<!-- loader -->
+	<div id="ftco-loader" class="show fullscreen">
+		<svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>
+			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/>
+		</svg>
+	</div>
+
+	<!-- START Script -->
+	<div th:replace="~{fragments/script :: script}"></div>
+	<!-- End Script -->
+
+	<script>
+		function reloadScripts() {
+			const scriptFiles = [
+				"https://code.jquery.com/jquery-3.6.0.min.js",
+				"/js/jquery.min.js",
+				"/js/jquery-migrate-3.0.1.min.js",
+				"/js/popper.min.js",
+				"/js/bootstrap.min.js",
+				"/js/jquery.easing.1.3.js",
+				"/js/jquery.waypoints.min.js",
+				"/js/jquery.stellar.min.js",
+				"/js/owl.carousel.min.js",
+				"/js/jquery.magnific-popup.min.js",
+				"/js/aos.js",
+				"/js/jquery.animateNumber.min.js",
+				"/js/bootstrap-datepicker.js",
+				"/js/jquery.timepicker.min.js",
+				"/js/scrollax.min.js",
+				"/js/main.js"
+			];
+			$('script').each(function() {
+				$(this).remove();
+			});
+			scriptFiles.forEach(function(src) {
+				var script = document.createElement('script');
+				script.src = src;
+				script.type = 'text/javascript';
+				document.body.appendChild(script);
+			});
+		}
+		$(document).ready(function () {
+            $('#home_address, #home_type, #home_property, #home_price').on('change', function () {
+                searchProperties();
+            });
+            function searchProperties() {
+                const address = $('#home_address').val();
+                const type = $('#home_type').val();
+                const saleRent = $('#home_property').val();
+                const price = $('#home_price').val();
+
+                let minPrice = null, maxPrice = null;
+                if (price) {
+                    const [min, max] = price.split('_');
+                    minPrice = min === "" ? null : parseInt(min) * 1000000;
+                    maxPrice = max === "" ? null : parseInt(max) * 1000000;
+                }
+                $.ajax({
+                    url: '/Metro/tim-kiem-bat-dong-san',
+                    type: 'GET',
+                    data: {
+                        address: address,
+                        type: type,
+                        saleRent: saleRent,
+                        minPrice: minPrice,
+                        maxPrice: maxPrice
+                    },
+                    success: function (response) {
+                        $('#propertyContainer').html(response);
+                        reloadScripts();
+                    },
+                });
+            }
+        });
+	</script>
+</body>
+</html>

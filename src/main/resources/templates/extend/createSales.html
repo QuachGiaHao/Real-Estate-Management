@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Quản lý tài khoản</title>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+	<link rel="shortcut icon" th:href="@{/images/logo.png}">
+	<link rel="stylesheet" th:href="@{/css/admin/sidebar.css}">
+	<link rel="stylesheet" th:href="@{/css/admin/information.css}">
+</head>
+<body>
+<div class="container">
+
+	<!-- Sidebar -->
+	<div class="sidebar">
+		<div class="logo">
+			<h2>Metro Exodus</h2>
+			<h2></h2>
+		</div>
+		<ul class="menu">
+			<li><a th:href="@{/Metro/mo-rong/thong-tin-ca-nhan}"><i class="fa-solid fa-bars"></i> Thông tin chung</a></li>
+
+			<!-- Các mục chỉ dành cho Agent -->
+			<div th:if="${user.isAgent}">
+				<li><a th:href="@{/Metro/mo-rong/tao-tin-dang}"><i class="fa-solid fa-plus"></i> Tạo tin đăng</a></li>
+				<li><a th:href="@{/Metro/mo-rong/danh-sach-tin-da-dang}"><i class="fa-regular fa-square-check"></i> Danh sách tin đã đăng</a></li>
+				<li><a th:href="@{/Metro/mo-rong/danh-sach-khach-hang}"><i class="fa-solid fa-users"></i> Danh sách khách hàng</a></li>
+				<li><a th:href="@{/Metro/mo-rong/danh-sach-giao-dich}"><i class="fa-solid fa-list-check"></i> Danh sách giao dịch</a></li>
+				<li><a th:href="@{/Metro/mo-rong/tao-giao-dich-mua}" class="active"><i class="fa-solid fa-square-plus"></i> Tạo giao dịch mua</a></li>
+				<li><a th:href="@{/Metro/mo-rong/tao-giao-dich-thue}"><i class="fa-solid fa-circle-plus"></i> Tạo giao dịch cho thuê</a></li>
+			</div>
+
+			<li><a th:href="@{/Metro/trang-chu}"><i class="fa-solid fa-house"></i> Trở về trang chủ</a></li>
+			<li><a th:href="@{/Metro/dang-xuat}"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
+		</ul>
+	</div>
+
+	<!-- Main Content -->
+	<div class="main-content">
+		<h1>Tạo hợp đồng mua nhà mới</h1>
+
+		<!-- START Owner -->
+		<div class="content-section">
+			<h2>Bên cho thuê</h2>
+			<form>
+				<div class="form-group">
+					<label for="owner_name">Tên đầy đủ: </label>
+					<input type="text" id="owner_name" name="owner_name" class="form-control" required>
+				</div>
+				<div class="form-group">
+					<label for="owner_id">Mã số định danh (CCCD): </label>
+					<input type="number" id="owner_id" name="owner_id" class="form-control" required>
+				</div>
+				<div class="form-group">
+					<label for="owner_birthday">Ngày sinh(mm-dd-yyyy): </label>
+					<input type="date" id="owner_birthday" name="owner_birthday" class="form-control" min="1900-01-01" max="2020-12-31" required>
+				</div>
+				<div class="form-group">
+					<label for="owner_address">Địa chỉ: </label>
+					<input type="text" id="owner_address" name="owner_address" class="form-control" required>
+				</div>
+			</form>
+		</div>
+		<!-- END Owner -->
+
+		<!-- START Customer -->
+		<div class="content-section">
+			<h2>Bên thuê</h2>
+			<form>
+				<div class="form-group">
+					<label for="customer_name">Tên đầy đủ: </label>
+					<input type="text" id="customer_name" name="customer_name" class="form-control" required>
+				</div>
+				<div class="form-group">
+					<label for="customer_id">Mã số định danh (CCCD): </label>
+					<input type="number" id="customer_id" name="customer_id" class="form-control" required>
+				</div>
+				<div class="form-group">
+					<label for="customer_birthday">Ngày sinh(mm-dd-yyyy): </label>
+					<input type="date" id="customer_birthday" name="customer_birthday" class="form-control" min="1900-01-01" max="2020-12-31" required>
+				</div>
+				<div class="form-group">
+					<label for="customer_address">Địa chỉ: </label>
+					<input type="text" id="customer_address" name="customer_address" class="form-control" required>
+				</div>
+			</form>
+		</div>
+		<!-- END Customer -->
+
+		<!-- START Property -->
+		<div class="content-section">
+			<h2>Thông tin về BDS</h2>
+			<form>
+				<div class="form-group">
+					<label for="property_address">Địa chỉ: </label>
+					<input type="text" id="property_address" name="property_address" class="form-control" required>
+				</div>
+				<div class="form-group">
+					<label for="property_area">Diện tích sàn (m2): </label>
+					<input type="number" id="property_area" name="property_area" class="form-control" required>
+				</div>
+				<div class="form-group">
+					<label for="property_purpose">Mục tích sử dụng: </label>
+					<input type="text" id="property_purpose" name="property_purpose" class="form-control" required>
+				</div>
+				<div class="form-group">
+					<label for="property_detail">Mô tả chi tiết: </label>
+					<textarea id="property_detail" name="property_detail" class="form-control" rows="8" style="width: 95%;" required></textarea>
+				</div>
+			</form>
+		</div>
+		<!-- END Property -->
+
+		<!-- START Payment -->
+		<div class="content-section">
+			<h2>Thanh toán và giao dịch</h2>
+			<form>
+				<div class="form-group">
+					<label for="start">Ngày có hiệu lực: </label>
+					<input type="date" id="start" name="start" class="form-control" required>
+				</div>
+				<div class="form-group">
+					<label for="payment">Số tiền thanh toán (vnd): </label>
+					<input type="number" id="payment" name="payment" class="form-control" required>
+				</div>
+				<div class="form-group">
+					<label for="payment_methods">Phương thức thanh toán: </label>
+					<input type="text" id="payment_methods" name="payment_methods" class="form-control" required>
+				</div>
+			</form>
+		</div>
+		<!-- END Payment -->
+
+		<!-- START information -->
+		<div class="content-section">
+			<h2>Quyền và nghĩa vụ của hai bên</h2>
+			<p>
+				1.Quyền và nghĩa vụ của bên A <br>
+				*Quyền của bên A <br>
+					- Có quyền nhận tiền chuyển nhượng theo đúng số tiền và hạn thanh toán do hai bên thỏa thuận. <br>
+					- Có quyền gia hạn để bên B hoàn thành nghĩa vụ, yêu cầu bên B trả lãi đối với số tiền chậm trả theo lãi suất
+					do Ngân hàng nhà nước công bố tương ứng với thời gian chậm trả tại thời điểm thanh toán. <br>
+				*Nghĩa vụ của bên A <br>
+					- Bên A có nghĩa vụ giao quyền sử dụng đất, quyền sở hữu nhà ở nêu tại Điều 1 của Hợp đồng này cùng các giấy tờ về
+					quyền sử dụng đất, quyền sở hữu nhà ở cho bên B ngay sau khi ký hợp đồng để bên B thực hiện thủ tục đăng ký biến động
+					(thủ tục sang tên). <br>
+					- Nộp thuế thu nhập cá nhân (nếu các bên thỏa thuận bên A nộp ). <br>
+				2.Quyền và nghĩa vụ của bên B <br>
+				*Quyền của bên B <br>
+					- Nhận quyền sử dụng đất, quyền sở hữu nhà ở nêu tại Điều 1 của Hợp đồng này cùng các giấy tờ về quyền sử dụng đất,
+				quyền sở hữu nhà ở từ bên A <br>
+				*Nghĩa vụ của bên B <br>
+				- Trả đủ tiền, đúng thời hạn và đúng phương thức đã thỏa thuận cho bên A. <br>
+				- Thực hiện đăng ký biến động quyền sử dụng đất, quyền sở hữu nhà ở tại cơ quan có thẩm quyền theo quy định của pháp luật. <br>
+				- Bên B chịu trách nhiệm nộp thuế thu nhập cá nhân (nếu thỏa thuận bên B nộp thay). <br>
+				- Nộp lệ phí trước bạ theo quy định. <br>
+				- Nộp phí thẩm định hồ sơ chuyển nhượng quyền sử dụng đất, quyền sở hữu nhà ở theo quy định. <br>
+				- Trả phí và thù lao công chứng hợp đồng chuyển nhượng. <br>
+			</p>
+		</div>
+		<!-- END Information -->
+
+		<!-- START information -->
+		<div class="content-section">
+			<h2>Phương pháp giải quyết tranh chấp và cam đoan</h2>
+			<p>
+				1. Phương thức giải quyết tranh chấp hợp đồng <br>
+				Trong quá trình thực hiện Hợp đồng này, nếu phát sinh tranh chấp, các bên cùng nhau thương lượng giải quyết
+				trên nguyên tắc tôn trọng quyền lợi của nhau; Trong trường hợp không giải quyết được thì một trong hai bên
+				có quyền khởi kiện để yêu cầu Toà án có thẩm quyền giải quyết theo quy định pháp luật. <br>
+
+				2. Cam đoan của các bên <br>
+				- Đã khai đúng sự thật và tự chịu trách nhiệm về tính chính xác của những thông tin về nhân thân
+				đã ghi trong hợp đồng này. <br>
+				- Thực hiện đúng và đầy đủ tất cả những thỏa thuận đã ghi trong Hợp đồng này; nếu bên nào vi phạm
+				mà gây thiệt hại, thì phải bồi thường cho bên kia hoặc cho người thứ ba (nếu có). <br>
+				- Trong quá trình thực hiện nếu phát hiện thấy những vấn đề cần thoả thuận thì hai bên có thể lập thêm
+				Phụ lục Hợp đồng. Nội dung Phụ lục Hợp đồng có giá trị pháp lý như Hợp đồng chính. <br>
+				- Hợp đồng này có giá trị kể từ ngày hai bên ký kết. <br>
+
+				2.1 Bên A cam đoan <br>
+
+				Những thông tin về nhân thân, về quan hệ hôn nhân và về quyền sử dụng đất, quyền sở hữu nhà ở đã nêu
+				trong hợp đồng này là đúng sự thật. <br>
+				* Tại thời điểm giao kết Hợp đồng này: <br>
+				- Quyền sử dụng đất, quyền sở hữu nhà ở nói trên chưa tham gia bất cứ một giao dịch nào: Không tặng cho,
+				cho thuê, cho mượn, cầm cố, đặt cọc, thế chấp, góp vốn. <br>
+				- Quyền sử dụng đất, quyền sở hữu nhà ở đã được đăng ký, cấp giấy chứng nhận theo đúng quy định của pháp luật. <br>
+				- Quyền sử dụng đất, quyền sở hữu nhà ở không có tranh chấp. <br>
+				- Quyền sử dụng đất, quyền sở hữu nhà ở không bị kê biên để bảo đảm thi hành án. <br>
+				- Quyền sử dụng đất, quyền sở hữu nhà ở không thuộc quy hoạch hoặc thuộc trường hợp bị giải phóng mặt bằng. <br>
+				- Có trách nhiệm tạo mọi điều kiện cho Bên B hoàn tất các thủ tục có liên quan đến việc đăng ký sang tên
+				quyền sử dụng đất, quyền sở hữu nhà ở tại cơ quan nhà nước có thẩm quyền. <br>
+
+				2.2 Bên B cam đoan <br>
+				- Những thông tin về nhân thân, về quan hệ hôn nhân mà Bên B cung cấp ghi trong hợp đồng là đúng sự thật. <br>
+				- Bên B đã tìm hiểu thông tin về thửa đất và nhà ở nêu tại Điều 1 của Hợp đồng này cùng các giấy tờ về quyền
+				sử dụng đất, quyền sở hữu nhà ở nêu trên. <br>
+
+				2.3 Hai bên cam đoan <br>
+				- Đảm bảo tính chính xác, trung thực và hoàn toàn chịu trách nhiệm trước pháp luật nếu có sự giả mạo về hồ sơ,
+				giấy tờ cung cấp cũng như các hành vi gian lận hay vi phạm pháp luật khác liên quan tới việc ký kết hợp đồng này. <br>
+				- Việc giao kết Hợp đồng này hoàn toàn tự nguyện, không bị lừa dối, không bị ép buộc. <br>
+				- Thực hiện đúng và đầy đủ các thoả thuận đã ghi trong Hợp đồng này. <br>
+
+				3. Điều khoản cuối cùng <br>
+				- Hợp đồng này có hiệu lực kể từ thời điểm công chứng (hoặc chứng thực). Việc sửa đổi, bổ sung hoặc huỷ bỏ
+				Hợp đồng này chỉ có giá trị khi được hai Bên lập thành văn bản và chỉ được thực hiện khi Bên B chưa đăng ký
+				sang tên quyền sử dụng đất và quyền sở hữu nhà ở theo Hợp đồng này. <br>
+				- Hai bên đã tự đọc nguyên văn, đầy đủ các trang của bản Hợp đồng này và không yêu cầu chỉnh sửa, thêm, bớt
+				bất cứ thông tin gì trong bản hợp đồng này. Đồng thời hiểu rõ quyền, nghĩa vụ, lợi ích hợp pháp của mình và
+				hậu quả pháp lý của việc giao kết Hợp đồng này. <br>
+			</p>
+		</div>
+		<!-- END Information -->
+
+		<!-- START button submit -->
+		<div class="content-section">
+			<h2>Tạo hợp đồng mới</h2>
+			<button type="button" id="createSalesButton" class="save-btn">Tạo hợp đồng mua bán</button>
+		</div>
+		<!-- END button submit -->
+
+	</div>
+</div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$("#createSalesButton").click(function() {
+        const userConfirmed = confirm("Xác nhận tạo hợp đồng mua nhà");
+        if (!userConfirmed) {
+            alert('Thao tác đã bị hủy');
+			return;
+        }
+
+		const formData = new FormData();
+
+		formData.append('ownerName', $("#owner_name").val());
+        formData.append('ownerId', $("#owner_id").val());
+        formData.append('ownerBirthday', $("#owner_birthday").val());
+        formData.append('ownerAddress', $("#owner_address").val());
+
+        formData.append('customerName', $("#customer_name").val());
+        formData.append('customerId', $("#customer_id").val());
+        formData.append('customerBirthday', $("#customer_birthday").val());
+        formData.append('customerAddress', $("#customer_address").val());
+
+        formData.append('propertyAddress', $("#property_address").val());
+        formData.append('propertyArea', $("#property_area").val());
+        formData.append('propertyPurpose', $("#property_purpose").val());
+        formData.append('propertyDetail', $("#property_detail").val());
+
+        formData.append('startDate', $("#start").val());
+        formData.append('payment', $("#payment").val());
+        formData.append('payment_methods', $("#payment_methods").val());
+
+        $.ajax({
+            type: "POST",
+            url: "/Metro/tao-hop-dong-mua",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                alert("Tạo hợp đồng mới thành công.");
+                location.reload();
+            },
+            error: function () {
+                alert("Có lỗi xảy ra khi Tạo hợp đồng");
+            }
+        });
+
+    });
+</script>
+
+</html>

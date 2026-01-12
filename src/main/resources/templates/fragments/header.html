@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/Metro/trang-chu}">Metro Exodus</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a th:href="@{/Metro/trang-chu}" class="nav-link">Trang chủ</a></li>
+                    <li class="nav-item"><a th:href="@{/Metro/ve-chung-toi}" class="nav-link">Giới thiệu</a></li>
+                    <li class="nav-item"><a th:href="@{/Metro/moi-gioi}" class="nav-link">Môi giới</a></li>
+                    <li class="nav-item"><a th:href="@{/Metro/bat-dong-san}" class="nav-link">Bất động sản</a></li>
+
+	                <li class="nav-item" th:if="${user != null}">
+		                <a th:href="@{/Metro/mo-rong/thong-tin-ca-nhan}" class="nav-link">Mở rộng</a>
+	                </li>
+
+	                <li class="nav-item" th:if="${user == null}">
+		                <a th:href="@{/Metro/dang-nhap}" class="nav-link">Đăng nhập</a>
+	                </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

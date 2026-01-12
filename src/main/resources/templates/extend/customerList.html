@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Quản lý tài khoản</title>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+	<link rel="shortcut icon" th:href="@{/images/logo.png}">
+	<link rel="stylesheet" th:href="@{/css/admin/sidebar.css}">
+	<link rel="stylesheet" th:href="@{/css/admin/information.css}">
+</head>
+<body>
+<div class="container">
+
+	<!-- Sidebar -->
+	<div class="sidebar">
+		<div class="logo">
+			<h2>Metro Exodus</h2>
+			<h2></h2>
+		</div>
+		<ul class="menu">
+			<li><a th:href="@{/Metro/mo-rong/thong-tin-ca-nhan}"><i class="fa-solid fa-bars"></i> Thông tin chung</a></li>
+
+			<!-- Các mục chỉ dành cho Agent -->
+			<div th:if="${user.isAgent}">
+				<li><a th:href="@{/Metro/mo-rong/tao-tin-dang}"><i class="fa-solid fa-plus"></i> Tạo tin đăng</a></li>
+				<li><a th:href="@{/Metro/mo-rong/danh-sach-tin-da-dang}"><i class="fa-regular fa-square-check"></i> Danh sách tin đã đăng</a></li>
+				<li><a th:href="@{/Metro/mo-rong/danh-sach-khach-hang}" class="active"><i class="fa-solid fa-users"></i> Danh sách khách hàng</a></li>
+				<li><a th:href="@{/Metro/mo-rong/danh-sach-giao-dich}"><i class="fa-solid fa-list-check"></i> Danh sách giao dịch</a></li>
+				<li><a th:href="@{/Metro/mo-rong/tao-giao-dich-mua}"><i class="fa-solid fa-square-plus"></i> Tạo giao dịch mua</a></li>
+				<li><a th:href="@{/Metro/mo-rong/tao-giao-dich-thue}"><i class="fa-solid fa-circle-plus"></i> Tạo giao dịch cho thuê</a></li>
+			</div>
+
+			<li><a th:href="@{/Metro/trang-chu}"><i class="fa-solid fa-house"></i> Trở về trang chủ</a></li>
+			<li><a th:href="@{/Metro/dang-xuat}"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
+		</ul>
+	</div>
+
+	<!-- Main Content -->
+	<div class="main-content">
+		<h1>Danh sách khách hàng đã biết</h1>
+
+	</div>
+</div>
+</body>
+</html>

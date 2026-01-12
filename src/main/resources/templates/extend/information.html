@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Quản lý tài khoản</title>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+	<link rel="shortcut icon" th:href="@{/images/logo.png}">
+	<link rel="stylesheet" th:href="@{/css/admin/sidebar.css}">
+	<link rel="stylesheet" th:href="@{/css/admin/information.css}">
+</head>
+<body>
+<div class="container">
+
+	<!-- Sidebar -->
+	<div class="sidebar">
+		<div class="logo">
+			<h2>Metro Exodus</h2>
+			<h2></h2>
+		</div>
+		<ul class="menu">
+			<li><a th:href="@{/Metro/mo-rong/thong-tin-ca-nhan}" class="active"><i class="fa-solid fa-bars"></i> Thông tin chung</a></li>
+
+			<!-- For Agent -->
+			<div th:if="${user.isAgent}">
+				<li><a th:href="@{/Metro/mo-rong/tao-tin-dang}"><i class="fa-solid fa-plus"></i> Tạo tin đăng</a></li>
+				<li><a th:href="@{/Metro/mo-rong/danh-sach-tin-da-dang}"><i class="fa-regular fa-square-check"></i> Danh sách tin đã đăng</a></li>
+				<li><a th:href="@{/Metro/mo-rong/danh-sach-khach-hang}"><i class="fa-solid fa-users"></i> Danh sách khách hàng</a></li>
+				<li><a th:href="@{/Metro/mo-rong/danh-sach-giao-dich}"><i class="fa-solid fa-list-check"></i> Danh sách giao dịch</a></li>
+				<li><a th:href="@{/Metro/mo-rong/tao-giao-dich-mua}"><i class="fa-solid fa-square-plus"></i> Tạo giao dịch mua</a></li>
+				<li><a th:href="@{/Metro/mo-rong/tao-giao-dich-thue}"><i class="fa-solid fa-circle-plus"></i> Tạo giao dịch cho thuê</a></li>
+			</div>
+			<!---->
+
+			<li><a th:href="@{/Metro/trang-chu}"><i class="fa-solid fa-house"></i> Trở về trang chủ</a></li>
+			<li><a th:href="@{/Metro/dang-xuat}"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
+		</ul>
+	</div>
+
+	<!-- Main Content -->
+	<div class="main-content">
+		<h1>Quản lý tài khoản</h1>
+
+		<!-- START Avatar -->
+		<div class="content-section">
+			<h2>Cài đặt ảnh đại diện</h2>
+			<form id="avatarForm" th:data-email="${user.email}">
+				<div style="text-align: center;">
+					<!-- Ảnh đại diện -->
+					<img id="avatarPreview" th:src="@{'/Metro/avatar/' + ${user.email}}"
+					     src="" alt="avatar"
+					     style="width: 150px; height: 150px; border: 2px solid #ccc; cursor: pointer;">
+				</div>
+				<div style="text-align: center;">
+					<!-- Thông báo ảnh tạm -->
+					<p id="temporaryMessage" style="display: none; color: #888; font-size: 14px;">Ảnh đại diện chưa được lưu.</p>
+					<!-- Ẩn nút chọn tệp -->
+					<input type="file" id="avatarInput" name="avatar" accept="image/*" style="display: none;" required>
+				</div>
+				<button type="button" id="updateAvatarButton" class="save-btn">Cập nhật ảnh đại diện</button>
+			</form>
+		</div>
+		<!-- END Avatar -->
+
+		<!-- START Information -->
+		<div class="content-section">
+			<h2>Thông tin cá nhân</h2>
+			<form>
+				<div class="form-group">
+					<label for="name">Tên đầy đủ: </label>
+					<input type="text" id="name" name="name" class="form-control" th:value="${user.name}" required>
+				</div>
+				<div class="form-group">
+					<label for="email">Email: </label>
+					<input type="text" id="email" name="email" class="form-control" th:value="${user.email}" required disabled>
+				</div>
+				<div class="form-group">
+					<label for="phone">Số điện thoại: </label>
+					<input type="text" id="phone" name="phone" class="form-control" th:value="${user.phone}" required>
+				</div>
+				<div class="form-group">
+					<label for="birthday">Ngày sinh(mm-dd-yyyy): </label>
+					<input type="date" id="birthday" name="birthday" class="form-control" th:value="${user.birthday}" min="1900-01-01" max="2020-12-31" required>
+				</div>
+				<div class="form-group">
+					<label for="address">Địa chỉ: </label>
+					<input type="text" id="address" name="address" class="form-control" th:value="${user.address}" required>
+				</div>
+				<button type="button" id="updateInformationButton" class="save-btn">Lưu thay đổi</button>
+			</form>
+		</div>
+		<!-- END Information -->
+
+		<!-- START Password -->
+		<div class="content-section">
+			<h2>Cài đặt mật khẩu</h2>
+			<form id="passwordForm" th:data-email="${user.email}">
+				<div class="form-group">
+					<label for="oldPassword">Mật khẩu cũ</label>
+					<input type="password" id="oldPassword" name="oldPassword" placeholder="Nhập mật khẩu cũ" required>
+				</div>
+				<div class="form-group">
+					<label for="newPassword">Mật khẩu mới</label>
+					<input type="password" id="newPassword" name="newPassword" placeholder="Nhập mật khẩu mới" required>
+				</div>
+				<div class="form-group">
+					<label for="confirmPassword">Xác nhận mật khẩu mới</label>
+					<input type="password" id="confirmPassword" name="confirmPassword" placeholder="Xác nhận mật khẩu mới" required>
+				</div>
+				<button type="button" id="updatePasswordButton" class="save-btn">Lưu thay đổi</button>
+			</form>
+		</div>
+		<!-- END Password -->
+
+		<!-- START Certificate Image -->
+		<div th:if="${user.isAgent}" class="content-section">
+			<h2>Cập nhật ảnh chứng chỉ hành nghề</h2>
+			<form id="certificateForm" th:data-email="${user.email}">
+				<div style="text-align: center;">
+					<img id="certificateReview" th:src="@{'/Metro/certificate/' + ${user.email}}" src="" alt="certificate"
+					     style="width: 400px; height: 300px; border: 2px solid #ccc; cursor: pointer;">
+				</div>
+				<div style="text-align: center;">
+					<!-- Thông báo ảnh tạm -->
+					<p id="temporaryMessage2" style="display: none; color: #888; font-size: 14px;">Ảnh chưa được lưu.</p>
+					<!-- Ẩn nút chọn tệp -->
+					<input type="file" id="certificateImage" name="certificate" accept="image/*" style="display: none;" required>
+				</div>
+				<button type="button" id="updateCertificateButton" class="save-btn">Cập nhật ảnh chứng chỉ hành nghề</button>
+			</form>
+		</div>
+		<!-- END Certificate Image -->
+
+		<!-- START Delete Account -->
+		<div class="content-section">
+			<h2>Xóa tài khoản</h2>
+			<form id="deleteAccountForm" th:data-email="${user.email}">
+				<button type="button" id="deleteAccountButton" class="save-btn">Xóa tài khoản</button>
+			</form>
+		</div>
+		<!-- END Delete Account -->
+
+	</div>
+</div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script th:src="@{/js/admin/image.js}"></script>
+<script>
+	//Avatar
+	$('#updateAvatarButton').on('click', function (event) {
+		const formData = new FormData($('#avatarForm')[0]);
+		const email = $('#avatarForm').data('email');
+		formData.append('email', email);
+
+        $.ajax({
+            url: '/Metro/cap-nhat-anh-dai-dien',
+            type: 'PUT',
+            data: formData,
+            processData: false, //Dùng để gửi ảnh
+            contentType: false,
+            success: function (response) {
+                alert("Cập nhật ảnh đại diện thành công!");
+                location.reload();
+            },
+            error: function (xhr, status, error) {
+                alert("Có lỗi xảy ra khi cập nhật ảnh đại diện.");
+            }
+        });
+	});
+
+	//Information
+	$('#updateInformationButton').on('click', function (event) {
+		const formData = new FormData();
+	    formData.append('name', $('#name').val());
+	    formData.append('email', $('#email').val());
+	    formData.append('phone', $('#phone').val());
+	    formData.append('birthday', $('#birthday').val());
+	    formData.append('address', $('#address').val());
+
+	    $.ajax({
+	        url: '/Metro/cap-nhat-thong-tin',
+	        type: 'PUT',
+	        data: formData,
+	        processData: false,
+	        contentType: false,
+	        success: function (response) {
+	            alert("Cập nhật thông tin thành công!");
+	            location.reload();
+	        },
+	        error: function (xhr, status, error) {
+	            alert("Có lỗi xảy ra khi cập nhật thông tin.");
+	        }
+	    });
+	});
+
+	//Password
+	$('#updatePasswordButton').on('click', function (event) {
+		const formData = new FormData();
+	    formData.append('oldPassword', $('#oldPassword').val());
+	    formData.append('newPassword', $('#newPassword').val());
+	    formData.append('confirmPassword', $('#confirmPassword').val());
+	    const email = $('#passwordForm').data('email');
+	    if (!email) {
+	        alert("Email không hợp lệ hoặc không tồn tại.");
+	        return;
+	    }
+	    formData.append('email', email);
+
+	    $.ajax({
+	        url: '/Metro/cap-nhat-mat-khau',
+	        type: 'PUT',
+	        data: formData,
+	        processData: false,
+	        contentType: false,
+	        success: function (response) {
+	            alert("Cập nhật mật khẩu thành công!");
+	            location.reload();
+	        },
+	        error: function (xhr, status, error) {
+	            const errorMessage = xhr.responseText || "Có lỗi xảy ra.";
+                alert(errorMessage);
+	        }
+	    });
+	});
+
+	//Certificate
+	$('#updateCertificateButton').on('click', function (event) {
+		const formData = new FormData($('#certificateForm')[0]);
+		const email = $('#certificateForm').data('email');
+
+		formData.append('email', email);
+
+        $.ajax({
+            url: '/Metro/cap-nhat-anh-chung-chi',
+            type: 'PUT',
+            data: formData,
+            processData: false, //Dùng để gửi ảnh
+            contentType: false,
+            success: function (response) {
+                alert("Cập nhật ảnh chứng chỉ thành công!");
+                location.reload();
+            },
+            error: function (xhr, status, error) {
+                alert("Có lỗi xảy ra khi cập nhật ảnh chứng chỉ.");
+            }
+        });
+	});
+
+	//Delete Account
+	$('#deleteAccountButton').on('click', function (event) {
+		const formData = new FormData();
+		const email = $('#passwordForm').data('email');
+	    if (!email) {
+	        alert("Email không hợp lệ hoặc không tồn tại.");
+	        return;
+	    }
+	    formData.append('email', email);
+
+	    //Confirm
+	    if (!confirm("Bạn có chắc chắn muốn xóa tài khoản này?")) {
+	        return;
+	    }
+
+        $.ajax({
+            url: '/Metro/xoa-tai-khoan',
+            type: 'Delete',
+            data: formData,
+            processData: false, //Dùng để gửi ảnh
+            contentType: false,
+            success: function (response) {
+                alert("Tài khoản đã được xóa thành công.");
+	            window.location.href = '/Metro/trang-chu';
+            },
+            error: function (xhr, status, error) {
+                alert("Có lỗi xảy ra khi xóa tài khoản.");
+            }
+        });
+	});
+
+</script>
+
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Quản lý tài khoản</title>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+	<link rel="shortcut icon" th:href="@{/images/logo.png}">
+	<link rel="stylesheet" th:href="@{/css/admin/sidebar.css}">
+	<link rel="stylesheet" th:href="@{/css/admin/information.css}">
+	<style>
+
+	</style>
+
+</head>
+<body>
+<div class="container">
+
+	<!-- Sidebar -->
+	<div class="sidebar">
+		<div class="logo">
+			<h2>Metro Exodus</h2>
+			<h2></h2>
+		</div>
+		<ul class="menu">
+			<li><a th:href="@{/Metro/mo-rong/thong-tin-ca-nhan}"><i class="fa-solid fa-bars"></i> Thông tin chung</a></li>
+
+			<!-- Các mục chỉ dành cho Agent -->
+			<div th:if="${user.isAgent}">
+				<li><a th:href="@{/Metro/mo-rong/tao-tin-dang}" class="active"><i class="fa-solid fa-plus"></i> Tạo tin đăng</a></li>
+				<li><a th:href="@{/Metro/mo-rong/danh-sach-tin-da-dang}"><i class="fa-regular fa-square-check"></i> Danh sách tin đã đăng</a></li>
+				<li><a th:href="@{/Metro/mo-rong/danh-sach-khach-hang}"><i class="fa-solid fa-users"></i> Danh sách khách hàng</a></li>
+				<li><a th:href="@{/Metro/mo-rong/danh-sach-giao-dich}"><i class="fa-solid fa-list-check"></i> Danh sách giao dịch</a></li>
+				<li><a th:href="@{/Metro/mo-rong/tao-giao-dich-mua}"><i class="fa-solid fa-square-plus"></i> Tạo giao dịch mua</a></li>
+				<li><a th:href="@{/Metro/mo-rong/tao-giao-dich-thue}"><i class="fa-solid fa-circle-plus"></i> Tạo giao dịch cho thuê</a></li>
+			</div>
+
+			<li><a th:href="@{/Metro/trang-chu}"><i class="fa-solid fa-house"></i> Trở về trang chủ</a></li>
+			<li><a th:href="@{/Metro/dang-xuat}"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a></li>
+		</ul>
+	</div>
+
+	<!-- Main Content -->
+	<div class="main-content">
+		<h1>Tạo tin đăng mới</h1>
+
+		<!-- START property -->
+		<div class="content-section">
+			<h2><label for="sale_rent">Nhu cầu (Cho thuê/Bán): </label></h2>
+			<select id="sale_rent" name="sale_rent" class="form-control" required>
+				<option value="" disabled selected>Chọn</option>
+				<option value="Thuê">Cho thuê</option>
+				<option value="Bán">Bán</option>
+			</select>
+		</div>
+		<!-- END property -->
+
+		<!-- START address -->
+		<div class="content-section">
+			<h2><label for="address">Địa chỉ Bất động sản: </label></h2>
+			<select id="address" name="address" class="form-control" required>
+				<option value="" disabled selected>Chọn địa chỉ</option>
+				<option value="Thử Đức">Thủ Đức</option>
+				<option value="Quận 1">Quận 1</option>
+				<option value="Quận 2">Quận 2</option>
+				<option value="Quận 3">Quận 3</option>
+				<option value="Quận 4">Quận 4</option>
+				<option value="Quận 5">Quận 5</option>
+				<option value="Quận 6">Quận 6</option>
+				<option value="Quận 7">Quận 7</option>
+				<option value="Quận 8">Quận 8</option>
+				<option value="Quận 9">Quận 9</option>
+				<option value="Quận 10">Quận 10</option>
+				<option value="Quận 11">Quận 11</option>
+				<option value="Quận 12">Quận 12</option>
+				<option value="Bình Tân">Bình Tân</option>
+				<option value="Bình Thạnh">Bình Thạnh</option>
+				<option value="Gò Vấp">Gò Vấp</option>
+				<option value="Phú Nhuận">Phú Nhuận</option>
+				<option value="Tân Bình">Tân Bình</option>
+				<option value="Tân Phú">Tân Phú</option>
+				<option value="Bình Chánh">Bình Chánh</option>
+				<option value="Cần Giờ">Cần Giờ</option>
+				<option value="Củ Chi">Củ Chi</option>
+				<option value="Hóc Môn">Hóc Môn</option>
+				<option value="Nhà Bè">Nhà Bè</option>
+			</select>
+		</div>
+		<!-- END address -->
+
+		<!-- START type -->
+		<div class="content-section">
+			<h2>Thông tin Bất động sản</h2>
+
+			<h3><label for="type">Loại Bất động sản</label></h3>
+			<select id="type" name="type" class="form-control" required>
+				<option value="" disabled selected>Chọn</option>
+				<option value="Đất">Đất</option>
+				<option value="Văn phòng">Văn phòng</option>
+				<option value="Chung cư">Chung cư</option>
+				<option value="Nhà trọ">Nhà trọ</option>
+				<option value="Nhà riêng">Nhà riêng</option>
+				<option value="Biệt thự, khu nghỉ dưỡng">Biệt thự, khu nghỉ dưỡng</option>
+				<option value="Kho hàng, nhà xưởng">Kho hàng, nhà xưởng</option>
+			</select>
+
+			<div class="form-group">
+				<h3><label for="name">Tên bất động sản</label></h3>
+				<input type="text" id="name" placeholder="Tên / tiêu đề bất động sản" required>
+			</div>
+
+			<div style="display: flex; gap: 20px; align-items: center;">
+				<div class="form-group" style="width: 48%; padding-left: 10px">
+					<h3><label for="area">Diện tích</label></h3>
+					<input type="number" style="width: 98%;" id="area" placeholder="m2" required>
+				</div>
+				<div class="form-group" style="width: 48%;">
+					<h3><label for="price">Mức giá:</label></h3>
+					<input type="number" style="width: 98%;" id="price" placeholder="Vnd" required>
+				</div>
+			</div>
+		</div>
+		<!-- END property -->
+
+		<!-- START other information -->
+		<div class="content-section">
+			<h2>Thông tin khác</h2>
+
+			<h3><label for="interior">Nội thất</label></h3>
+			<select id="interior" name="interior" class="form-control" required>
+				<option value="" disabled selected>Chọn</option>
+				<option value="Đầy đủ">Đầy đủ</option>
+				<option value="Cơ bản">Cơ bản</option>
+				<option value="Không có">Không có</option>
+			</select>
+
+			<div style="display: flex; gap: 20px; align-items: center;">
+				<div class="form-group" style="width: 48%; padding-left: 10px">
+					<h3><label for="bedroom">Số phòng ngủ</label></h3>
+					<input type="number" style="width: 98%;" id="bedroom" placeholder="Nhập số phòng ngủ" required>
+				</div>
+				<div class="form-group" style="width: 48%;">
+					<h3><label for="bathroom">Số phòng tắm:</label></h3>
+					<input type="number" style="width: 98%;" id="bathroom" placeholder="Nhập số phòng tắm" required>
+				</div>
+			</div>
+		</div>
+		<!-- END other information -->
+
+		<!-- START description-->
+		<div class="content-section">
+			<h2>Mô tả bất động sản</h2>
+			<div class="form-group">
+				<label for="description">Nhập mô tả:</label>
+				<textarea id="description" name="description" rows="8" style="width: 100%;" placeholder="Nhập thông tin chi tiết / mô tả về bất động sản..." required></textarea>
+			</div>
+		</div>
+		<!-- END description -->
+
+		<!-- START image -->
+		<div class="content-section">
+			<h2>Chọn hình ảnh</h2>
+			<form id="imageForm">
+				<div style="text-align: center;">
+					<!-- Ảnh bất động sản -->
+					<img id="imagePreview" src="/images/white.jpg" alt="image"
+					     style="width: 400px; height: 300px; border: 2px solid #ccc; cursor: pointer;">
+				</div>
+				<div style="text-align: center;">
+					<!-- Ẩn nút chọn tệp -->
+					<input type="file" id="image" name="image" accept="image/*" style="display: none;" required>
+				</div>
+			</form>
+		</div>
+		<!-- END image -->
+
+		<!-- START create -->
+		<div class="content-section">
+			<h2>Tạo tin đăng</h2>
+			<button type="button" id="createNewPostButton" class="save-btn">Tạo tin đăng</button>
+		</div>
+		<!-- END create -->
+
+	</div>
+</div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	//Image
+	$(document).ready(function () {
+	    $('#imagePreview').on('click', function () {
+	        $('#image').click();
+	    });
+
+	    $('#image').on('change', function () {
+	        const file = this.files[0];
+	        if (file) {
+	            const reader = new FileReader();
+	            reader.onload = function (e) {
+	                $('#imagePreview').attr('src', e.target.result);
+	            };
+	            reader.readAsDataURL(file);
+	        } else {
+	            alert("Không thể tải ảnh. Vui lòng thử lại!");
+	        }
+	    });
+	});
+
+	//Create Post
+	$('#createNewPostButton').on('click', function (event) {
+	    const formData = new FormData();
+
+	    formData.append('sale_rent', $('#sale_rent').val());
+	    formData.append('address', $('#address').val());
+	    formData.append('type', $('#type').val());
+	    formData.append('name', $('#name').val());
+	    formData.append('area', $('#area').val());
+	    formData.append('price', $('#price').val());
+	    formData.append('interior', $('#interior').val());
+	    formData.append('bedroom', $('#bedroom').val());
+	    formData.append('bathroom', $('#bathroom').val());
+	    formData.append('description', $('#description').val());
+
+	    const imageFile = $('#image')[0].files[0];
+	    if (imageFile) {
+	        formData.append('image', imageFile);
+	    }
+
+	    $.ajax({
+	        url: '/Metro/tao-bat-dong-san-moi',
+	        type: 'POST',
+	        data: formData,
+	        processData: false,
+	        contentType: false,
+	        success: function (response) {
+	            alert("Tạo tin đăng thành công!");
+	            location.reload();
+	        },
+	        error: function (xhr, status, error) {
+	            alert("Có lỗi xảy ra khi tạo tin đăng.");
+	        }
+	    });
+	});
+
+</script>
+
+</html>

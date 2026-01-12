@@ -1,0 +1,13 @@
+body
+    font-family: Arial, sans-serif;
+
+Các ô điền, các mục chọn,...:
+    size: 16px
+    color: black
+
+Nút bấm:
+    size: 16
+    color: yellow
+
+Tiêu đề:
+    size: 18
